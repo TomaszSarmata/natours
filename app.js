@@ -2,6 +2,8 @@ const fs = require("fs");
 const express = require("express");
 const app = express();
 
+app.use(express.json()); //we added middleware here
+
 // app.get("/", (req, res) => {
 //   res
 //     .status(200)
@@ -12,10 +14,12 @@ const app = express();
 //   res.status(200).json({ message: "post method works now" });
 // });
 
+//reading the file with tours and saving to variable tours
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
+//adding route handler for get request to return all tours from api endpoint
 app.get("/api/v1/tours", (req, res) => {
   res.status(200).json({
     status: "success",
@@ -25,6 +29,9 @@ app.get("/api/v1/tours", (req, res) => {
     },
   });
 });
+
+//adding route handler for post request to allow users adding new tours
+app.post("api/v1/tours", (req, res) => {});
 
 const port = 3000;
 app.listen(port, () => {
