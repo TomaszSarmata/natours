@@ -2,7 +2,7 @@ const fs = require("fs");
 const express = require("express");
 const app = express();
 
-app.use(express.json()); //we added middleware here, that will add the data to the req.body
+app.use(express.json()); //we added middleware here, that will add the data to the req.body (created the body on the req actually)
 
 // app.get("/", (req, res) => {
 //   res
@@ -32,7 +32,29 @@ app.get("/api/v1/tours", (req, res) => {
 
 //adding route handler for post request to allow users adding new tours
 app.post("/api/v1/tours", (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
+
+  const newId = tours[tours.length - 1].id + 1; //creating the new id for the new entry;
+  //below creating our entry object that will be data in the req.body and the newId - we have to merge both and so we use Object.assign
+  newTour = Object.assign({ id: newId }, req.body);
+
+  //here we are simply pushing that new entry into our list of tours
+  tours.push(newTour);
+
+  //now we have to persist new entry
+  fs.writeFile(
+    `${__dirname}/dev-data/data/tours-simple.json`,
+    JSON.stringify(tours),
+    (err) => {
+      res.status(201).json({
+        status: "success",
+        data: {
+          tour: newTour,
+        },
+      });
+    }
+  );
+
   res.send("Done");
 });
 
