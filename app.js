@@ -2,7 +2,7 @@ const fs = require("fs");
 const express = require("express");
 const app = express();
 
-app.use(express.json()); //we added middleware here
+app.use(express.json()); //we added middleware here, that will add the data to the req.body
 
 // app.get("/", (req, res) => {
 //   res
@@ -31,7 +31,10 @@ app.get("/api/v1/tours", (req, res) => {
 });
 
 //adding route handler for post request to allow users adding new tours
-app.post("api/v1/tours", (req, res) => {});
+app.post("/api/v1/tours", (req, res) => {
+  console.log(req.body);
+  res.send("Done");
+});
 
 const port = 3000;
 app.listen(port, () => {
