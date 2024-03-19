@@ -30,6 +30,15 @@ app.get("/api/v1/tours", (req, res) => {
   });
 });
 
+//Here we are going to define a route that accepts a variable so that we can return just a single tour based on the id
+app.get("/api/v1/tours/:id", (req, res) => {
+  console.log(req.params);
+
+  res.status(200).json({
+    status: "success",
+  });
+});
+
 //adding route handler for post request to allow users adding new tours
 app.post("/api/v1/tours", (req, res) => {
   // console.log(req.body);
