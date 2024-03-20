@@ -19,8 +19,8 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
-//adding route handler for get request to return all tours from api endpoint
-app.get("/api/v1/tours", (req, res) => {
+//refactoring the code here to create a function that will handle the handler functions from each api route to seperate the https type of request and the routing from the handler functions
+const getAllTours = (req, res) => {
   res.status(200).json({
     status: "success",
     results: tours.length,
@@ -28,7 +28,10 @@ app.get("/api/v1/tours", (req, res) => {
       tours: tours,
     },
   });
-});
+};
+
+//adding route handler for get request to return all tours from api endpoint
+app.get("/api/v1/tours", getAllTours);
 
 //Here we are going to define a route that accepts a variable so that we can return just a single tour based on the id
 app.get("/api/v1/tours/:id", (req, res) => {
