@@ -10,6 +10,12 @@ app.use((req, res, next) => {
   next(); //always call next function!!!
 });
 
+//my own middleware to manipulate the response a little. Adding the current time to the req
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
+});
+
 // app.get("/", (req, res) => {
 //   res
 //     .status(200)
@@ -27,8 +33,10 @@ const tours = JSON.parse(
 
 //refactoring the code here to create a function that will handle the handler functions from each api route to seperate the https type of request and the routing from the handler functions
 const getAllTours = (req, res) => {
+  console.log(req.requestTime);
   res.status(200).json({
     status: "success",
+    requestedAt: req.requestTime,
     results: tours.length,
     data: {
       tours: tours,
