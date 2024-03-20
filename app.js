@@ -4,6 +4,8 @@ const app = express();
 
 app.use(express.json()); //we added middleware here, that will add the data to the req.body (created the body on the req actually)
 
+app.use((req, res, next) => {});
+
 // app.get("/", (req, res) => {
 //   res
 //     .status(200)
