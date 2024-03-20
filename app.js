@@ -109,19 +109,21 @@ const deleteTour = (req, res) => {
 };
 
 //adding route handler for get request to return all tours from api endpoint
-app.get("/api/v1/tours", getAllTours);
+// app.get("/api/v1/tours", getAllTours);
 
 //Here we are going to define a route that accepts a variable so that we can return just a single tour based on the id
 app.get("/api/v1/tours/:id", getTour);
 
 //adding route handler for post request to allow users adding new tours
-app.post("/api/v1/tours", createTour);
+// app.post("/api/v1/tours", createTour);
 
 // adding the route handler for patch request
 app.patch("/api/v1/tours/:id", updateTour);
 
 //adding the route handler for delete request
 app.delete("/api/v1/tours/:id", deleteTour);
+
+app.route("/api/v1/tours").get(getAllTours).post(createTour);
 
 const port = 3000;
 app.listen(port, () => {
