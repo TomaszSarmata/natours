@@ -4,6 +4,12 @@ const app = express();
 
 app.use(express.json()); //we added middleware here, that will add the data to the req.body (created the body on the req actually)
 
+//my own middleware here
+app.use((req, res, next) => {
+  console.log("hello from the middleware ");
+  next(); //always call next function!!!
+});
+
 // app.get("/", (req, res) => {
 //   res
 //     .status(200)
@@ -124,12 +130,6 @@ const deleteTour = (req, res) => {
 // app.delete("/api/v1/tours/:id", deleteTour);
 
 app.route("/api/v1/tours").get(getAllTours).post(createTour);
-
-//my own middleware here
-app.use((req, res, next) => {
-  console.log("hello from the middleware ");
-  next(); //always call next function!!!
-});
 
 app
   .route("/api/v1/tours/:id")
