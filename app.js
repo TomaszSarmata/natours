@@ -77,17 +77,7 @@ const createTour = (req, res) => {
   );
 };
 
-//adding route handler for get request to return all tours from api endpoint
-app.get("/api/v1/tours", getAllTours);
-
-//Here we are going to define a route that accepts a variable so that we can return just a single tour based on the id
-app.get("/api/v1/tours/:id", getTour);
-
-//adding route handler for post request to allow users adding new tours
-app.post("/api/v1/tours", createTour);
-
-// adding the route handler for patch request
-app.patch("/api/v1/tours/:id", (req, res) => {
+const updateTour = (req, res) => {
   if (req.params.id * 1 > tours.length) {
     return res.status(404).json({
       status: "fail",
@@ -101,10 +91,9 @@ app.patch("/api/v1/tours/:id", (req, res) => {
       tour: "<Updated Tour here...>",
     },
   });
-});
+};
 
-//adding the route handler for delete request
-app.delete("/api/v1/tours/:id", (req, res) => {
+const deleteTour = (req, res) => {
   if (req.params.id * 1 > tours.length) {
     return res.status(404).json({
       status: "fail",
@@ -117,7 +106,22 @@ app.delete("/api/v1/tours/:id", (req, res) => {
     message: "tour successfully deleted",
     data: null,
   });
-});
+};
+
+//adding route handler for get request to return all tours from api endpoint
+app.get("/api/v1/tours", getAllTours);
+
+//Here we are going to define a route that accepts a variable so that we can return just a single tour based on the id
+app.get("/api/v1/tours/:id", getTour);
+
+//adding route handler for post request to allow users adding new tours
+app.post("/api/v1/tours", createTour);
+
+// adding the route handler for patch request
+app.patch("/api/v1/tours/:id", updateTour);
+
+//adding the route handler for delete request
+app.delete("/api/v1/tours/:id", deleteTour);
 
 const port = 3000;
 app.listen(port, () => {
