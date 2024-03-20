@@ -52,14 +52,7 @@ const getTour = (req, res) => {
   });
 };
 
-//adding route handler for get request to return all tours from api endpoint
-app.get("/api/v1/tours", getAllTours);
-
-//Here we are going to define a route that accepts a variable so that we can return just a single tour based on the id
-app.get("/api/v1/tours/:id", getTour);
-
-//adding route handler for post request to allow users adding new tours
-app.post("/api/v1/tours", (req, res) => {
+const createTour = (req, res) => {
   // console.log(req.body);
 
   const newId = tours[tours.length - 1].id + 1; //creating the new id for the new entry;
@@ -82,7 +75,16 @@ app.post("/api/v1/tours", (req, res) => {
       });
     }
   );
-});
+};
+
+//adding route handler for get request to return all tours from api endpoint
+app.get("/api/v1/tours", getAllTours);
+
+//Here we are going to define a route that accepts a variable so that we can return just a single tour based on the id
+app.get("/api/v1/tours/:id", getTour);
+
+//adding route handler for post request to allow users adding new tours
+app.post("/api/v1/tours", createTour);
 
 // adding the route handler for patch request
 app.patch("/api/v1/tours/:id", (req, res) => {
