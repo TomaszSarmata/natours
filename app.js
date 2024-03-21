@@ -1,7 +1,10 @@
 const fs = require("fs");
 const express = require("express");
+const morgan = require("morgan");
+
 const app = express();
 
+//1) MIDDLEWARES
 app.use(express.json()); //we added middleware here, that will add the data to the req.body (created the body on the req actually)
 
 //my own middleware here
@@ -31,6 +34,7 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
+//2) ROUTE HANDLERS
 //refactoring the code here to create a function that will handle the handler functions from each api route to seperate the https type of request and the routing from the handler functions
 const getAllTours = (req, res) => {
   console.log(req.requestTime);
@@ -137,6 +141,7 @@ const deleteTour = (req, res) => {
 //adding the route handler for delete request
 // app.delete("/api/v1/tours/:id", deleteTour);
 
+//3) ROUTES
 app.route("/api/v1/tours").get(getAllTours).post(createTour);
 
 app
@@ -145,6 +150,7 @@ app
   .patch(updateTour)
   .delete(deleteTour);
 
+//START THE SERVER
 const port = 3000;
 app.listen(port, () => {
   console.log(`App running on port ${port}`);
