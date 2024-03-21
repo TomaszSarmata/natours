@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const app = express();
 
 //1) MIDDLEWARES
+app.use(morgan("dev"));
 app.use(express.json()); //we added middleware here, that will add the data to the req.body (created the body on the req actually)
 
 //my own middleware here
