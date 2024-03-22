@@ -151,6 +151,16 @@ app
   .patch(updateTour)
   .delete(deleteTour);
 
+//here we are going to use our user resource to create different routes
+
+app.route("/api/v1/users").get(getAllUsers).post(createUser);
+
+app
+  .route("/api/v1/users/:id")
+  .get(getUser)
+  .patch(updateUser)
+  .delete(deleteUser);
+
 //START THE SERVER
 const port = 3000;
 app.listen(port, () => {
