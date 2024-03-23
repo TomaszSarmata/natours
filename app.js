@@ -174,6 +174,7 @@ const deleteUser = (req, res) => {
 };
 
 //3) ROUTES
+app.use("/api/v1/tours", tourRouter);
 
 const tourRouter = express.Router();
 
