@@ -174,17 +174,12 @@ const deleteUser = (req, res) => {
 };
 
 //3) ROUTES
+const tourRouter = express.Router();
 app.use("/api/v1/tours", tourRouter);
 
-const tourRouter = express.Router();
+tourRouter.route("/").get(getAllTours).post(createTour);
 
-tourRouter.route("/api/v1/tours").get(getAllTours).post(createTour);
-
-tourRouter
-  .route("/api/v1/tours/:id")
-  .get(getTour)
-  .patch(updateTour)
-  .delete(deleteTour);
+tourRouter.route("/:id").get(getTour).patch(updateTour).delete(deleteTour);
 
 //here we are going to use our user resource to create different routes
 
