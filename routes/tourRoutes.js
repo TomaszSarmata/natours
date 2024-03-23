@@ -1,8 +1,9 @@
+const fs = require("fs");
 const express = require("express");
 
 //reading the file with tours and saving to variable tours
 const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
+  fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
 );
 
 const getAllTours = (req, res) => {
