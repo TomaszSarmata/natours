@@ -34,13 +34,6 @@ exports.getTour = (req, res) => {
 
   const tour = tours.find((el) => el.id === id);
 
-  if (!tour) {
-    return res.status(404).json({
-      status: "fail",
-      message: "Invalid ID",
-    });
-  }
-
   res.status(200).json({
     status: "success",
     data: {
@@ -75,13 +68,6 @@ exports.createTour = (req, res) => {
 };
 
 exports.updateTour = (req, res) => {
-  if (req.params.id * 1 > tours.length) {
-    return res.status(404).json({
-      status: "fail",
-      message: "Invalid ID",
-    });
-  }
-
   res.status(200).json({
     status: "success",
     data: {
