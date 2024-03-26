@@ -6,10 +6,13 @@ const userRouter = require("./routes/userRoutes");
 
 const app = express();
 
+console.log("here", process.env.NODE_ENV);
+
 //1) MIDDLEWARES
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+// app.use(morgan("dev"));
 
 app.use(express.json()); //we added middleware here, that will add the data to the req.body (created the body on the req actually)
 
