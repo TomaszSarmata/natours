@@ -10,6 +10,7 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json()); //we added middleware here, that will add the data to the req.body (created the body on the req actually)
 
+//middleware for accessing static files in the public folder
 app.use(express.static(`${__dirname}/public`));
 
 //my own middleware here
