@@ -2,7 +2,7 @@ const fs = require("fs");
 
 //reading the file with tours and saving to variable tours
 const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
+  fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`),
 );
 
 exports.checkID = (req, res, next, val) => {
@@ -58,7 +58,7 @@ exports.createTour = (req, res) => {
 
   const newId = tours[tours.length - 1].id + 1; //creating the new id for the new entry;
   //below creating our entry object that will be data in the req.body and the newId - we have to merge both and so we use Object.assign
-  newTour = Object.assign({ id: newId }, req.body);
+  const newTour = Object.assign({ id: newId }, req.body);
 
   //here we are simply pushing that new entry into our list of tours
   tours.push(newTour);
@@ -74,7 +74,7 @@ exports.createTour = (req, res) => {
           tour: newTour,
         },
       });
-    }
+    },
   );
 };
 
