@@ -1,4 +1,5 @@
 const dotenv = require("dotenv");
+
 dotenv.config({ path: "./config.env" }); //this line will allow our program to read the file and save to variables as environment variables
 const app = require("./app");
 
