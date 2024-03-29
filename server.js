@@ -13,7 +13,7 @@ mongoose
     useCreateIndex: true,
     useFindAndModify: false,
   })
-  .then((con) => console.log("DB connections successfull!"));
+  .then(() => console.log("DB connections successfull!"));
 
 // console.log(process.env);
 
