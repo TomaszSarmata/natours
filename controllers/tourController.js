@@ -1,4 +1,5 @@
 const fs = require("fs");
+const Tour = require("../models/tourModel");
 
 //reading the file with tours and saving to variable tours
 const tours = JSON.parse(
