@@ -16,9 +16,18 @@ mongoose
   .then(() => console.log("DB connections successfull!"));
 
 const tourSchema = new mongoose.Schema({
-  name: String,
-  rating: Number,
-  price: Number,
+  name: {
+    type: String,
+    required: [true, "A tour must have a name"],
+  },
+  rating: {
+    type: Number,
+    default: 4.5,
+  },
+  price: {
+    type: Number,
+    required: [true, "A tour must have a price"],
+  },
 });
 
 // console.log(process.env);
