@@ -7,11 +7,16 @@ const app = require("./app");
 
 const DB = process.env.DATABASE;
 
-mongoose.connect(DB, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
+  .then((con) => {
+    console.log(con.connections);
+    console.log("DB connections successfull!");
+  });
 
 // console.log(process.env);
 
