@@ -32,3 +32,13 @@ const importData = async () => {
     console.log(error);
   }
 };
+
+//Delete all data from collection
+const deleteData = async () => {
+  try {
+    await Tour.deleteMany();
+    console.log("Data successully deleted!");
+  } catch (err) {
+    console.log(err);
+  }
+};
