@@ -32,9 +32,9 @@ exports.createTour = async (req, res) => {
 
   res.status(201).json({
     status: "success",
-    // data: {
-    //   tour: newTour,
-    // },
+    data: {
+      tour: newTour,
+    },
   });
 };
 
