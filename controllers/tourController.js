@@ -27,7 +27,9 @@ exports.getTour = (req, res) => {
   // });
 };
 
-exports.createTour = (req, res) => {
+exports.createTour = async (req, res) => {
+  const newTour = await Tour.create(req.body);
+
   res.status(201).json({
     status: "success",
     // data: {
