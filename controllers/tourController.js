@@ -30,7 +30,7 @@ exports.getTour = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(401).json({
+    res.status(404).json({
       status: "failed",
       message: `Error! Couldn't find the tour: ${err}`,
     });
