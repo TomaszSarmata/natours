@@ -17,3 +17,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("DB connections successfull!"));
+
+//Read Json File
+
+const tours = fs.readFileSync(`tours-simple.json`, "utf-8");
