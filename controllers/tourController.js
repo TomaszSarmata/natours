@@ -12,7 +12,7 @@ exports.getAllTours = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(400).json({
+    res.status(404).json({
       status: "failed",
       message: `Error!: ${err}`,
     });
