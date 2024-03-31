@@ -14,13 +14,15 @@ exports.getAllTours = async (req, res) => {
 
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
-    console.log("here the converted one", JSON.parse(queryStr));
 
     let query = Tour.find(JSON.parse(queryStr));
 
     // 2) Sorting
     if (req.query.sort) {
-      query.sort(req.query.sort);
+      const sortBy = req.query.sort.split(",").join(" ");
+      console.log("sorting", sortBy);
+      console.log("oldone", req.query.sort);
+      query.sort(sortBy);
     }
 
     //EXECUTE THE QUERY
