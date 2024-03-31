@@ -13,7 +13,7 @@ exports.getAllTours = async (req, res) => {
     // 2) Advanced Filtering
 
     const queryStr = JSON.stringify(queryObj);
-    queryStr.replace(/\b(gte|gt|lte|lt)\b/g);
+    queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
 
     // {difficulty: 'easy', duration: {$gte: 5}
     //  {duration: { gte: '5' }, difficulty: 'easy'}
