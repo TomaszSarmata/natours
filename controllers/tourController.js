@@ -16,11 +16,7 @@ exports.getAllTours = async (req, res) => {
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
     console.log("here the converted one", JSON.parse(queryStr));
 
-    // {difficulty: 'easy', duration: {$gte: 5}
-    //  {duration: { gte: '5' }, difficulty: 'easy'}
-    // operators to replace gte, gt, lte, lt
-
-    const query = Tour.find(queryObj);
+    const query = Tour.find(JSON.parse(queryStr));
 
     //EXECUTE THE QUERY
     const tours = await query;
