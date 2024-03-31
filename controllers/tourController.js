@@ -2,8 +2,6 @@ const Tour = require("../models/tourModel");
 
 exports.getAllTours = async (req, res) => {
   try {
-    console.log("here", req.query);
-
     //BUILD THE QUERY
     // 1a) Filtering
     const queryObj = { ...req.query };
@@ -20,9 +18,9 @@ exports.getAllTours = async (req, res) => {
     // 2) Sorting
     if (req.query.sort) {
       const sortBy = req.query.sort.split(",").join(" ");
-      console.log("sorting", sortBy);
-      console.log("oldone", req.query.sort);
       query.sort(sortBy);
+    } else {
+      query.sort("-createdAt");
     }
 
     //EXECUTE THE QUERY
