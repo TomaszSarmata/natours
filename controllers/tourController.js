@@ -162,6 +162,11 @@ exports.getMonthlyPlan = async (req, res) => {
           },
         },
       },
+      {
+        $group: {
+          _id: { $month: "$startDates" },
+        },
+      },
     ]);
 
     res.status(200).json({
