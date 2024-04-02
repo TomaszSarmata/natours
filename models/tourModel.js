@@ -47,6 +47,7 @@ const tourSchema = new mongoose.Schema(
       type: Number,
       validate: {
         validator: function (value) {
+          //'this' only works for create a document
           return value < this.price; //that will return true if the condition met
         },
         message:
