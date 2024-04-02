@@ -92,6 +92,11 @@ tourSchema.pre("find", function (next) {
   next();
 });
 
+tourSchema.pre("findOne", function (next) {
+  this.find({ secretTour: { $ne: true } });
+  next();
+});
+
 // tour model below
 const Tour = mongoose.model("Tour", tourSchema);
 
